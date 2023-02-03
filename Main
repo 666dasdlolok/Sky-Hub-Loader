@@ -1,1 +1,64 @@
 
+-- sky hub loader
+
+
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/UI-Interface/CustomFIeld/main/RayField.lua'))()
+
+local Window = Rayfield:CreateWindow({
+	Name = "Sky - Hub Loader",
+	LoadingTitle = "Sky - Hub Loader",
+	LoadingSubtitle = "by Verny#9999",
+	ConfigurationSaving = {
+	   Enabled = true,
+	   FolderName = nil, -- Create a custom folder for your hub/game
+	   FileName = "Sky - Hub"
+	},
+	Discord = {
+	   Enabled = true,
+	   Invite = "eu2ygUDZeh", -- The Discord invite code, do not include discord.gg/
+	   RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+	},
+	KeySystem = false, -- Set this to true to use our key system
+	KeySettings = {
+	   Title = "Verny Hub Key",
+	   Subtitle = "Key System",
+	   Note = "Join the discord (discord.gg/eu2ygUDZeh)",
+	   FileName = "Sky - Hub Normal",
+	   SaveKey = true,
+	   GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+	   Key = "ReleaseWoohoo!"
+	}
+ })
+
+local Tab = Window:CreateTab("Script Loader", 4483362458) -- Title, Image
+
+
+local Label = Tab:CreateLabel("Script is Loading Please Wait.")
+
+local Games = {
+    [11040063484] = "https://raw.githubusercontent.com/666dasdlolok/SwordFighters/main/Main", -- Sword Fighters Simulator
+    [11542692507] = "https://raw.githubusercontent.com/666dasdlolok/AnimeSoul/main/Main", -- Anime Soul Simulator
+    [9380307595] = "https://raw.githubusercontent.com/666dasdlolok/PixelPieceTest/main/Main", -- Pixel Piece
+    
+}
+
+if Games[game.PlaceId] then
+    loadstring(game:HttpGet(Games[game.PlaceId]))()
+else
+    Rayfield:Notify({
+        Title = "Sky - Hub",
+        Content = "Game is Not Supported!",
+        Duration = 6.5,
+        Image = 4483362458,
+        Actions = { -- Notification Buttons
+            Ignore = {
+                Name = "Okay!",
+                Callback = function()
+                    print("The user tapped Okay!")
+                end
+            },
+        },
+    })
+end
+
+Rayfield:LoadConfiguration()
